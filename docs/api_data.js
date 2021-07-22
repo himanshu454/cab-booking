@@ -1,0 +1,61 @@
+define({ "api": [
+  {
+    "type": "post",
+    "url": "/admin/login",
+    "title": "Admin [Post]",
+    "group": "ADMIN",
+    "description": "<p>This api is used for admin login.</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>Registered email of the admin.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>Password.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n   \"success\": \"true\",\n   \"message\": \"Success\",\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response 401:",
+          "content": "HTTP/1.1 401 Unauthorized.\n{\n  \"success\": \"false\",\n  \"message\": \"Wrong Password!\",\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response 404:",
+          "content": "HTTP/1.1 404 Data not found.\n{\n  \"success\": \"false\",\n  \"message\": \"Admin not found!\",\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response 500:",
+          "content": "HTTP/1.1 500 Error on server side.\n{\n  \"success\": \"false\",\n  \"message\": \"Something went wrong\",\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/interface/rest/admin-module/admin.route.js",
+    "groupTitle": "ADMIN",
+    "name": "PostAdminLogin"
+  }
+] });

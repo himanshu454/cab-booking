@@ -1,0 +1,14 @@
+{
+	"name": "cab-booking",
+	"version": "0.1.0",
+	"description": "This service contains the api of cab booking",
+	"title": "Cab Booking",
+	"url": "http://localhost:3001/v1",
+	"header": {
+		"title": "Setup",
+		"filename": "./doc-templates/header.md"
+	},
+	"footer": {
+		"title": "Cleanup"
+	}
+}

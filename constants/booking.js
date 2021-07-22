@@ -1,0 +1,9 @@
+const BOOKING = {
+  BOOKING_STATUS: {
+	REQUESTED: 'REQUESTED',
+    CONFIRMED: 'CONFIRMED',
+    CANCELLED: 'CANCELLED',
+  },
+};
+
+module.exports = BOOKING;
