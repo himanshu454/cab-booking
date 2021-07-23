@@ -13,6 +13,10 @@
     "lint:fix": "./node_modules/.bin/eslint ./src --fix",
     "generate-docs": "./node_modules/apidoc/bin/apidoc -i ./src/interface/rest/*-module/ -f \" *\\.route?.js$\" -o docs/"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/himanshu454/cab-booking.git"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {

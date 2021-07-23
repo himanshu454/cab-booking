@@ -9,6 +9,6 @@ const app = express();
 
 const AdminRoute = require('./admin-module/admin.route');
 
-app.use(AdminRoute);
+app.use('/admin', AdminRoute);
 
 module.exports = app;

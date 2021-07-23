@@ -2,7 +2,7 @@ define({ "api": [
   {
     "type": "post",
     "url": "/admin/login",
-    "title": "Admin [Post]",
+    "title": "AdminLogin [Post]",
     "group": "ADMIN",
     "description": "<p>This api is used for admin login.</p>",
     "parameter": {
@@ -29,7 +29,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n   \"success\": \"true\",\n   \"message\": \"Success\",\n}",
+          "content": "HTTP/1.1 200 OK\n{\n   \"success\": \"true\",\n   \"data\": {\n       \"token\": \"JWT\",\n       \"admin\": {\n          \"_id\": \"String\",\n          \"email\": \"String\"\n        }\n    },\n}",
           "type": "json"
         }
       ]
@@ -57,5 +57,174 @@ define({ "api": [
     "filename": "src/interface/rest/admin-module/admin.route.js",
     "groupTitle": "ADMIN",
     "name": "PostAdminLogin"
+  },
+  {
+    "type": "post",
+    "url": "/admin/register/driver",
+    "title": "RegisterDriver [Post]",
+    "group": "ADMIN",
+    "description": "<p>This api is used to register a driver.</p>",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": "<p>Bearer Token.</p>"
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>email of the driver.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>name of the driver.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>Password.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n   \"success\": \"true\",\n   \"data\": {Object},\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response 400:",
+          "content": "HTTP/1.1 400 Bad Request.\n{\n  \"success\": \"false\",\n  \"message\": \"Driver Already exist with this email!!\",\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response 500:",
+          "content": "HTTP/1.1 500 Error on server side.\n{\n  \"success\": \"false\",\n  \"message\": \"Something went wrong\",\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/interface/rest/admin-module/admin.route.js",
+    "groupTitle": "ADMIN",
+    "name": "PostAdminRegisterDriver"
+  },
+  {
+    "type": "post",
+    "url": "/admin/register/driver",
+    "title": "RegisterCab [Post]",
+    "group": "ADMIN",
+    "description": "<p>This api is used to register a cab.</p>",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": "<p>Bearer Token</p>"
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "driverId",
+            "description": "<p>Id of the driver.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "registrationNo",
+            "description": "<p>Registration Number of cab.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "brand",
+            "description": "<p>Brand of cab.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "model",
+            "description": "<p>Model of cab.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "location",
+            "description": "<p>Password.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "type",
+            "description": "<p>Cab Type('MOTOTBIKE', 'CAR').</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n   \"success\": \"true\",\n   \"data\": {Object},\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response 400:",
+          "content": "HTTP/1.1 400 Bad Request.\n{\n  \"success\": \"false\",\n  \"message\": \"Driver Already exist with this email!!\",\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response 500:",
+          "content": "HTTP/1.1 500 Error on server side.\n{\n  \"success\": \"false\",\n  \"message\": \"Something went wrong\",\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/interface/rest/admin-module/admin.route.js",
+    "groupTitle": "ADMIN",
+    "name": "PostAdminRegisterDriver"
   }
 ] });

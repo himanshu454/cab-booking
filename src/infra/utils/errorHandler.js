@@ -1,4 +1,3 @@
-
 const _errorHandler = {};
 
 _errorHandler.throwError = ({ code, message, type }) => {

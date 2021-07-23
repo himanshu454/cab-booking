@@ -18,9 +18,9 @@ _driver.schema = new Schema(
       trim: true,
       lowercase: true,
     },
-    currentCabId: { type: String, required: true }, // Current Cab Id (In case he change his car)
+    currentCabId: { type: Schema.Types.ObjectId, ref: 'cab' }, // Current Cab Id (In case he change his car)
     phoneNumber: { type: String, required: true },
-    isAvailable: { type: Boolean }, // Check drivers availability for ride
+    isAvailable: { type: Boolean, default: true }, // Check drivers availability for ride
     active: { type: Boolean, default: true },
   },
   { usePushEach: true },

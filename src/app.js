@@ -10,6 +10,7 @@ const logger = require('morgan');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
+const path = require('path');
 
 const REST = require('./interface/rest');
 
@@ -42,7 +43,7 @@ app.use('/ping', function (req, res) {
 app.use('/v1', REST.routes);
 
 // Documentation path
-app.use('/documentation', express.static('docs'))
+app.use('/documentation', express.static('docs'));
 
 // Export the express app instance
 module.exports = app;

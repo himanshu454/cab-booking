@@ -1,6 +1,9 @@
 /************* Modules ***********/
+const { CAB } = require('../../../../../constants');
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
+
+const cabType = CAB.CAB_TYPE;
 
 const _cab = {};
 
@@ -24,6 +27,12 @@ _cab.schema = new Schema(
     model: { type: String, required: true },
     active: { type: Boolean, default: true },
     location: { type: MapGrid },
+    driverId: { type: Schema.Types.ObjectId, ref: 'driver' },
+    type: {
+      type: String,
+      enum: Object.values(cabType),
+      default: cabType.CAR,
+    },
   },
   { usePushEach: true },
   { runSettersOnQuery: true },
@@ -43,6 +52,7 @@ _cab.schema.methods.safeObject = function () {
     'brand',
     'model',
     'location',
+    'driverId',
     'createdAt',
   ];
   const newSafeObject = {};
