@@ -10,7 +10,7 @@ const router = express.Router();
 const { validate, ValidationError } = require('express-validation');
 
 /****************Import Files****************/
-const { login, registerDriver, registerCab } = require('./admin.validation');
+const { login, registerDriver, registerCab, getBookings, updateBookingStatus } = require('./admin.validation');
 //const Auth = require('../../../infra/utils/auth');
 const AsyncHandler = require('../../../infra/utils/asyncHandler');
 const ResponseHandler = require('../../../infra/utils/responseHandler');
@@ -202,6 +202,108 @@ router.route('/register/cab').post(
     }
   }),
 );
+
+/**
+ * @api {get} /admin/bookings RiderBookings [Get]
+ * @apiGroup ADMIN
+ * @apiDescription This api is used to get all the bookings of the riders.
+ * @apiHeader {String} authorization Bearer Token
+ * @apiParam {String} status Pass status of booking(CONFIRMED, REQUESTED, CANCELLED, COMPLETED).
+ * @apiParam {String} pageNo Page Number.
+ * @apiParam {String} pageSize Page Size.
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *        "success": "true",
+ *        "data": {Object},
+ *     }
+ *
+ * @apiErrorExample Error-Response 500:
+ *     HTTP/1.1 500 Error on server side.
+ *     {
+ *       "success": "false",
+ *       "message": "Something went wrong",
+ *     }
+ */
+
+router.route('/bookings').get(
+  validate(getBookings),
+  AsyncHandler(async (req, res) => {
+    console.log(req.body);
+    // send only the data that is required by the controller
+    try {
+      const bookings = await Admin.getBookings({
+		  status: req.query.status,
+		  pageNo: req.query.pageNo,
+		  pageSize: req.query.pageSize
+      });
+      const response = {};
+      response.success = true;
+      response.statusCode = 200;
+      response.data = bookings;
+      return ResponseHandler(res, response);
+    } catch (e) {
+      console.log(e);
+      const response = {};
+      response.success = false;
+      response.statusCode = e.code;
+      response.message = e.message;
+      return ResponseHandler(res, response);
+    }
+  }),
+);
+
+/**
+ * @api {put} /admin/bookingStatus ConfirmBooking/UpdateBookingStatus [Put]
+ * @apiGroup ADMIN
+ * @apiDescription This api is used to confirm booking.
+ * @apiHeader {String} authorization Bearer Token
+ * @apiParam {String} bookingId Booking Id.
+ * @apiParam {String} status Pass status of booking(CONFIRMED, CANCELLED, COMPLETED).
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *        "success": "true",
+ *        "data": {Object},
+ *     }
+ *
+ * @apiErrorExample Error-Response 500:
+ *     HTTP/1.1 500 Error on server side.
+ *     {
+ *       "success": "false",
+ *       "message": "Something went wrong",
+ *     }
+ */
+
+router.route('/bookingStatus').put(
+  validate(updateBookingStatus),
+  AsyncHandler(async (req, res) => {
+    console.log(req.body);
+    // send only the data that is required by the controller
+    try {
+      const booking = await Admin.bookingStatus({
+		  status: req.body.status,
+		  bookingId: req.body.bookingId
+      });
+      const response = {};
+      response.success = true;
+      response.statusCode = 200;
+      response.data = booking;
+      return ResponseHandler(res, response);
+    } catch (e) {
+      console.log(e);
+      const response = {};
+      response.success = false;
+      response.statusCode = e.code;
+      response.message = e.message;
+      return ResponseHandler(res, response);
+    }
+  }),
+);
+
+/**************************************************
+ *********** Validation Middleware Function *******
+ **************************************************/
 
 //  eslint-disable-next-line no-unused-vars
 router.use(function (err, req, res, next) {

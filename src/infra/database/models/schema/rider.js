@@ -1,5 +1,6 @@
 /************* Modules ***********/
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 const { Schema } = mongoose;
 
 const _rider = {};
@@ -18,7 +19,7 @@ _rider.schema = new Schema(
     country: { type: String },
 
     // email verification related
-    verified: { type: Boolean, required: false },
+    verified: { type: Boolean, required: false, default: true },
     verificationToken: { type: String },
   },
   { usePushEach: true },
@@ -28,6 +29,29 @@ _rider.schema = new Schema(
 /**********Set Timestamps ************/
 _rider.schema.set('timestamps', true);
 
+/**************************************************
+ *********** Password Hashing Function ************
+ **************************************************/
+
+_rider.hashPassword = function hashPassword(password) {
+  const saltRounds = 5;
+  const salt = bcrypt.genSaltSync(saltRounds);
+  const hash = bcrypt.hashSync(password, salt);
+  return hash;
+};
+
+_rider.schema.pre('save', function (next) {
+  const rider = this;
+  // only hash the password if it has been modified (or is new)
+  if (!rider.isModified('password')) return next();
+  rider.password = _rider.hashPassword(rider.password);
+  next();
+});
+
+_rider.schema.methods.comparePassword = function (candidatePassword) {
+  return bcrypt.compareSync(candidatePassword, this.password);
+};
+
 _rider.schema.methods.safeObject = function () {
   const safeFields = [
     '_id',
@@ -36,6 +60,7 @@ _rider.schema.methods.safeObject = function () {
     'email',
     'country',
     'active',
+    'verified',
     'createdAt',
   ];
   const newSafeObject = {};

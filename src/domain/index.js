@@ -1,6 +1,6 @@
 const _services = {
-  User: require('./user'),
-  Company: require('./company'),
+  Rider: require('./rider'),
+  Booking: require('./booking'),
   Admin: require('./admin'),
 };
 

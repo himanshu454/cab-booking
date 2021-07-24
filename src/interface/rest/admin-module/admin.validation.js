@@ -5,8 +5,9 @@
  */
 
 const { Joi } = require('express-validation');
-const { CAB } = require('../../../../constants');
-const cabType = CAB.CAB_TYPE;
+const { CAB, BOOKING } = require('../../../../constants');
+const CabType = CAB.CAB_TYPE;
+const BookingStatus = BOOKING.BOOKING_STATUS;
 
 const login = {
   body: Joi.object({
@@ -46,8 +47,29 @@ const registerCab = {
         .description('Coordinates of location.'),
     }),
     type: Joi.string()
-      .valid(cabType.MOTOR_BIKE, cabType.CAR)
+      .valid(CabType.MOTOR_BIKE, CabType.CAR)
       .description('Type of cab'),
+  }).unknown(),
+};
+
+const getBookings = {
+  headers: Joi.object({
+    authorization: Joi.string().required().description('Jwt Token'),
+  }).unknown(),
+  query: Joi.object({
+	status: Joi.string().valid(BookingStatus.REQUESTED, BookingStatus.COMPLETED, BookingStatus.CONFIRMED, BookingStatus.CANCELLED).description('Booking Status'),
+    pageNo: Joi.number().optional().description('page no.'),
+    pageSize: Joi.number().optional().description('Documents Limit per page'),
+  }).unknown(),
+};
+
+const updateBookingStatus = {
+  headers: Joi.object({
+    authorization: Joi.string().required().description('Jwt Token'),
+  }).unknown(),
+  body: Joi.object({
+	bookingId: Joi.string().required().description('Booking Id'),
+	status: Joi.string().valid(BookingStatus.COMPLETED, BookingStatus.CONFIRMED, BookingStatus.CANCELLED).description('Booking Status'),
   }).unknown(),
 };
 
@@ -55,4 +77,6 @@ module.exports = {
   login,
   registerDriver,
   registerCab,
+  getBookings,
+  updateBookingStatus
 };

@@ -13,7 +13,7 @@ const _cab = {};
 
 const MapGrid = new Schema({
   type: { type: String, enum: ['Point'] },
-  coordinates: [{ type: Number, index: '2dsphere' }],
+  coordinates: [{ type: Number }],
 });
 
 /**************************************************
@@ -66,6 +66,7 @@ _cab.schema.methods.safeObject = function () {
 /**************************************************
  **********Interface or define collection name *****
  ***************************************************/
+_cab.schema.index({ location: '2dsphere' });
 
 _cab.model = mongoose.model('cab', _cab.schema);
 

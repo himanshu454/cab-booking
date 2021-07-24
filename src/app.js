@@ -10,7 +10,6 @@ const logger = require('morgan');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
-const path = require('path');
 
 const REST = require('./interface/rest');
 

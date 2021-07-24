@@ -22,7 +22,7 @@ _admin.schema = new Schema(
 _admin.schema.set('timestamps', true);
 
 /**************************************************
- *********** SafeFields Function to be returned ****
+ *********** Password Hashing Function ************
  **************************************************/
 
 _admin.hashPassword = function hashPassword(password) {
@@ -43,6 +43,10 @@ _admin.schema.pre('save', function (next) {
 _admin.schema.methods.comparePassword = function (candidatePassword) {
   return bcrypt.compareSync(candidatePassword, this.password);
 };
+
+/**************************************************
+ *********** SafeFields Function to be returned ****
+ **************************************************/
 
 _admin.schema.methods.safeObject = function () {
   const safeFields = ['_id', 'email', 'createdAt'];

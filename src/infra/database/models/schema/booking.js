@@ -12,8 +12,8 @@ const _booking = {};
  ***************************************************/
 
 const MapGrid = new Schema({
-  type: { type: String, enum: ['Point'] },
-  coordinates: [{ type: Number, index: '2dsphere' }],
+  type: { type: String, enum: ['Point'], default: 'Point' },
+  coordinates: [{ type: Number }],
 });
 
 const Address = new Schema({
@@ -53,6 +53,9 @@ _booking.schema = new Schema(
 
 /**********Set Timestamps ************/
 _booking.schema.set('timestamps', true);
+
+/**********Create index on riderId ********/
+_booking.schema.index({ riderId: 1 });
 
 /**************************************************
  ********SafeFields Function to be returned ********

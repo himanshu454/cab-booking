@@ -21,7 +21,7 @@ const getToken = function (req) {
   return null;
 };
 
-async function webhookAuth(req, res, next) {
+async function userAuth(req, res, next) {
   const token = getToken(req);
   req.isAuthenticated = false;
   if (!token) {
@@ -37,5 +37,5 @@ async function webhookAuth(req, res, next) {
 }
 
 module.exports = {
-  webhookAuth,
+  userAuth,
 };

@@ -20,6 +20,7 @@ _driver.schema = new Schema(
     },
     currentCabId: { type: Schema.Types.ObjectId, ref: 'cab' }, // Current Cab Id (In case he change his car)
     phoneNumber: { type: String, required: true },
+    profilePicture: { type: String },
     isAvailable: { type: Boolean, default: true }, // Check drivers availability for ride
     active: { type: Boolean, default: true },
   },
@@ -41,6 +42,7 @@ _driver.schema.methods.safeObject = function () {
     'email',
     'phoneNumber',
     'currentCabId',
+    'profilePicture',
     'verified',
     'createdAt',
   ];

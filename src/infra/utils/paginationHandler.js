@@ -1,7 +1,7 @@
 const _paginationHandler = {};
 
 function isSafe(num) {
-  if (num < 0 || num < 1000) {
+  if (num < 0) {
     return false;
   }
   return Number.isSafeInteger(num);
