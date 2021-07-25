@@ -2,9 +2,8 @@ const { Booking } = require('../../infra/database/models');
 const PaginationHandler = require('../../infra/utils/paginationHandler');
 
 /**
- * Function for getting nearBy Cabs.
- * @param {*} longitude
- * @param {*} latitude
+ * Function for getting bookings.
+ * @param {*} status
  * @param {*} pageNo
  * @param {*} pageSize
  */

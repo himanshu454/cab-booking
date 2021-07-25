@@ -3,9 +3,8 @@ const PaginationHandler = require('../../infra/utils/paginationHandler');
 const mongoose = require('mongoose');
 
 /**
- * Function for getting nearBy Cabs.
- * @param {*} longitude
- * @param {*} latitude
+ * Function for getting list of bookings.
+ * @param {*} riderId
  * @param {*} pageNo
  * @param {*} pageSize
  */

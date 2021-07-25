@@ -17,9 +17,10 @@ const {
   getBookings,
   updateBookingStatus,
 } = require('./admin.validation');
-//const Auth = require('../../../infra/utils/auth');
+const Auth = require('../../../infra/utils/auth');
 const AsyncHandler = require('../../../infra/utils/asyncHandler');
 const ResponseHandler = require('../../../infra/utils/responseHandler');
+const RateLimiter = require('../../../infra/utils/rateLimiting');
 const { Admin } = require('../../../domain');
 const { ERROR_TYPES, RESPONSE_MESSAGES } = require('../../../../constants');
 
@@ -65,6 +66,7 @@ const { ERROR_TYPES, RESPONSE_MESSAGES } = require('../../../../constants');
  */
 router.route('/login').post(
   validate(login),
+  AsyncHandler(RateLimiter.apiLimiter),
   AsyncHandler(async (req, res) => {
     console.log(req.body);
     // send only the data that is required by the controller
@@ -121,6 +123,7 @@ router.route('/login').post(
 
 router.route('/register/driver').post(
   validate(registerDriver),
+  AsyncHandler(Auth.adminAuth),
   AsyncHandler(async (req, res) => {
     console.log(req.body);
     // send only the data that is required by the controller
@@ -181,6 +184,7 @@ router.route('/register/driver').post(
 
 router.route('/register/cab').post(
   validate(registerCab),
+  AsyncHandler(Auth.adminAuth),
   AsyncHandler(async (req, res) => {
     console.log(req.body);
     // send only the data that is required by the controller
@@ -215,8 +219,8 @@ router.route('/register/cab').post(
  * @apiDescription This api is used to get all the bookings of the riders.
  * @apiHeader {String} authorization Bearer Token
  * @apiParam {String} status Pass status of booking(CONFIRMED, REQUESTED, CANCELLED, COMPLETED).
- * @apiParam {String} pageNo Page Number.
- * @apiParam {String} pageSize Page Size.
+ * @apiParam {Number} pageNo Page Number.
+ * @apiParam {Number} pageSize Page Size.
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
  *     {
@@ -234,6 +238,7 @@ router.route('/register/cab').post(
 
 router.route('/bookings').get(
   validate(getBookings),
+  AsyncHandler(Auth.adminAuth),
   AsyncHandler(async (req, res) => {
     console.log(req.body);
     // send only the data that is required by the controller
@@ -283,6 +288,7 @@ router.route('/bookings').get(
 
 router.route('/bookingStatus').put(
   validate(updateBookingStatus),
+  AsyncHandler(Auth.adminAuth),
   AsyncHandler(async (req, res) => {
     console.log(req.body);
     // send only the data that is required by the controller

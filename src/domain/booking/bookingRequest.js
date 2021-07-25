@@ -7,7 +7,7 @@ const {
 } = require('../../../constants');
 
 /**
- * Function for getting nearBy Cabs.
+ * Function for booking a request.
  * @param {*} riderId
  * @param {*} cabId
  * @param {*} payLoad

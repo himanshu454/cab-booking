@@ -1,7 +1,7 @@
 const { Booking } = require('../../infra/database/models');
 
 /**
- * Function for admin login.
+ * Function for confirming booking.
  * @param {*} bookingId
  * @param {*} status
  */

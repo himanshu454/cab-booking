@@ -8,7 +8,7 @@ const {
 } = require('../../../constants');
 
 /**
- * Function for admin login.
+ * Function for rider/user login.
  * @param {*} email
  * @param {*} password
  */
