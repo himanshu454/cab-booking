@@ -7,7 +7,7 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+	"test:unit": "NODE_ENV=test mocha $(find tests/unit -name '*.spec.js') --recursive --exit",
     "dev": "nodemon src/server.js",
     "start": "NODE_ENV=production node src/server.js",
     "lint": "./node_modules/.bin/eslint ./src",
@@ -35,12 +35,14 @@
   },
   "devDependencies": {
     "apidoc": "^0.28.1",
+    "chai": "^4.3.4",
     "eslint": "^7.31.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-security": "^1.4.0",
     "husky": "^7.0.1",
+    "mocha": "^9.0.3",
     "prettier": "^2.3.2"
   },
   "engines": {

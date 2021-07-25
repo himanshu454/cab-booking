@@ -117,6 +117,17 @@ Test apis on postman.
 
 ```
 
+## Added one sample unit test of rider register:
+
+Used [Mocha](https://mochajs.org/)
+
+```
+To run the test, run the command below:
+
+     * npm run test:unit
+ (make sure configure (test.env) in config folder before running the test)
+```
+
 ## Project Structure or How it is designed:
 
 ```

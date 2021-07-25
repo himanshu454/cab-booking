@@ -13,9 +13,9 @@ _rider.schema = new Schema(
   {
     name: { type: String, required: true, trim: true },
     phoneNumber: { type: String, required: true },
-    email: { type: String, unique: true },
+    email: { type: String, unique: true, required: true },
     active: { type: Boolean, default: true },
-    password: { type: String },
+    password: { type: String, required: true },
     country: { type: String },
 
     // email verification related
