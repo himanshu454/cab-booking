@@ -11,6 +11,10 @@
 -   Install npm, if not installed
 
           * sudo apt-get install npm
+
+-   Install Mongodb, if not installed:
+
+    ReferLink: https://www.mongodb.com/
 ```
 
 ## Configure .env - Place .env file in config folder(/config/.env)
@@ -102,7 +106,6 @@ apps.json
 .huskyrc.js
 .gitignore
 .eslintrc.js
-.gitignore
 ```
 
 ## PostMan Collection Link:
@@ -110,6 +113,29 @@ apps.json
 ```
 https://www.getpostman.com/collections/13a45fb89b5c943b0495
 
-Please test apis on postman.
+Test apis on postman.
+
+```
+
+## Project Structure or How it is designed:
+
+```
+This project is devide into two modules, listed below:
+
+     * Admin Module
+	 * Rider/User Module (Booking Module)
+
+* Admin Module:
+
+    - In this admin register driver and cabs later which can be booked by riders for trip.
+	- Admin can see the list of all the requested bookings.
+	- Admin can confirm the requested booking.
+
+* Rider/User Module:
+
+	- Rider can register himself/herself in the app
+	- Rider can request a booking for trip.
+	- Rider can view all the nearbycabs upto 10 km. (We can set the limit, default limit I have taken 10km)
+	- Rider can see the list of past trips also.
 
 ```
