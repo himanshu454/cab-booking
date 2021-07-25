@@ -42,14 +42,3 @@ Steps to run it as a service.
 Steps to lint the project before commiting.
 
     * npm run lint
-
-## Generate Docs
-
-To generate apidocs run the below command.
-
-    * npm run generate-docs
-
-To see the apidocs follow the below steps.
-
-    * Start the project - npm run dev
-    * Hit the url - http://serverurl/documentation
