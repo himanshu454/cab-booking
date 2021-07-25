@@ -158,7 +158,7 @@ router.route('/register/driver').post(
  * @apiParam {String} registrationNo Registration Number of cab.
  * @apiParam {String} brand Brand of cab.
  * @apiParam {String} model Model of cab.
- * @apiParam {String} location Password.
+ * @apiParam {Object} location longitude and latitude of location.
  * @apiParam {String} type Cab Type('MOTOTBIKE', 'CAR').
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
