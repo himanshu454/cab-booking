@@ -1,11 +1,11 @@
 const bunyan = require('bunyan');
 const config = require('../../../config');
-const fs = require('fs');
+const { existsSync, mkdirSync } = require('fs');
 const dir = './logs';
 
 //Create logs dir if not exist
-if (!fs.existsSync(dir)) {
-  fs.mkdirSync(dir);
+if (!existsSync(dir)) {
+  mkdirSync(dir);
 }
 
 const logger = bunyan.createLogger({
