@@ -9,6 +9,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon src/server.js",
+	"start": "NODE_ENV=production node src/server.js",
     "lint": "./node_modules/.bin/eslint ./src",
     "lint:fix": "./node_modules/.bin/eslint ./src --fix",
     "generate-docs": "./node_modules/apidoc/bin/apidoc -i ./src/interface/rest -f \" *\\.route.js$\" -o docs/"
