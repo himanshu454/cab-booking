@@ -110,4 +110,6 @@ apps.json
 ```
 https://www.getpostman.com/collections/13a45fb89b5c943b0495
 
+Please test apis on postman.
+
 ```
