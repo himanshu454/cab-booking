@@ -1,14 +1,48 @@
-# Vizitor Backend
+# CAB BOOKING
 
-## Run the project locally (Development)
-
-Run the following command and the APIs will the available locally for testing and development.
+## Prerequisites
 
 ```closure
-git clone https://gitlab.com/vizitorapp/backend-apis.git
-cd backend-apis
-npm install
-npm run dev
+-   Install NodeJS, if not installed
+
+          * curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+          * sudo apt-get install nodejs
+
+-   Install npm, if not installed
+
+          * sudo apt-get install npm
+```
+
+## Configure .env - Place .env file in config folder(/config/.env)
+
+```closure
+    SERVICE_NAME=cab-booking
+    MONGOURI
+    PORT
+    IP
+    ADMIN_EMAIL
+    ADMIN_PASSWORD
+    JWT_SECRET
+```
+
+## To run the project
+
+```closure
+Steps to run it as a service.
+
+    Step 0: Configure .env
+
+    Step 1: npm install
+
+    Step 2: npm run dev (For development)
+```
+
+## Seed Script
+
+```closure
+    Configure env (ADMIN_EMAIL AND ADMIN_PASSWORD)
+    Path - ./scripts/create-admin.js
+    Run this script to create an admin who will register driver and cabs
 ```
 
 ## Lint Project
@@ -18,12 +52,18 @@ npm run lint  # for cheking the lint error
 npm run lint:fix # for fixing the minor lint error
 ```
 
-## Run Tests
-
-Used [Mocha](https://mochajs.org/)
+## Generate Docs
 
 ```closure
-npm run test  # for running tests
+To generate apidocs run the below command.
+
+    * npm run generate-docs
+
+To see the apidocs follow the below steps.
+
+    * Start the project - npm run dev
+    * Hit the url - http://serverurl/documentation
+
 ```
 
 ## Directory Structure:
@@ -48,33 +88,26 @@ src/
         utils/
             logger.js
             errorHandler.js
+			auth.js
+			rateLimiting.js
+			responseHandler.js
     interface/
         rest/
             module/
-                TBD
-        graphql/
-            module/
-                index.js -> resolvers
-                schema.gql
-            scalar/
-                index.js -> resolvers
-                schema.gql
-            directives/
-                index.js -> resolvers
-                schema.gql
-            resolvers.js
-            typeDefs.js
-            index.js
+                .route.js
+				.validation.js
 package.json
 README.md
-Dockerfile
 apps.json
 .huskyrc.js
-.travis.yml
 .gitignore
 .eslintrc.js
 .gitignore
 ```
-## Explore
 
-* https://www.npmjs.com/package/graphql-rate-limit
+## PostMan Collection Link:
+
+```
+https://www.getpostman.com/collections/13a45fb89b5c943b0495
+
+```
