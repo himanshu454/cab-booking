@@ -34,7 +34,7 @@ const { Booking } = require('../../../domain');
  *     {
  *        "success": "true",
  *        "data": { Object }
- *     } 
+ *     }
  * @apiErrorExample Error-Response 500:
  *     HTTP/1.1 500 Error on server side.
  *     {
@@ -85,7 +85,7 @@ router.route('/nearByCabs').get(
  *     {
  *        "success": "true",
  *        "data": { Object }
- *     } 
+ *     }
  * @apiErrorExample Error-Response 404:
  *     HTTP/1.1 404 Cab Not Found.
  *     {
@@ -138,7 +138,7 @@ router.route('/requestBooking').post(
  *     {
  *        "success": "true",
  *        "data": { Object }
- *     } 
+ *     }
  * @apiErrorExample Error-Response 404:
  *     HTTP/1.1 404 Cab Not Found.
  *     {
@@ -158,7 +158,7 @@ router.route('/bookings').get(
   validate(getBookings),
   AsyncHandler(Auth.userAuth),
   AsyncHandler(async (req, res) => {
-	  console.log(req.query)
+    console.log(req.query);
     // send only the data that is required by the controller
     try {
       let riderId = req.authUser._id;

@@ -57,7 +57,14 @@ const getBookings = {
     authorization: Joi.string().required().description('Jwt Token'),
   }).unknown(),
   query: Joi.object({
-	status: Joi.string().valid(BookingStatus.REQUESTED, BookingStatus.COMPLETED, BookingStatus.CONFIRMED, BookingStatus.CANCELLED).description('Booking Status'),
+    status: Joi.string()
+      .valid(
+        BookingStatus.REQUESTED,
+        BookingStatus.COMPLETED,
+        BookingStatus.CONFIRMED,
+        BookingStatus.CANCELLED,
+      )
+      .description('Booking Status'),
     pageNo: Joi.number().optional().description('page no.'),
     pageSize: Joi.number().optional().description('Documents Limit per page'),
   }).unknown(),
@@ -68,8 +75,14 @@ const updateBookingStatus = {
     authorization: Joi.string().required().description('Jwt Token'),
   }).unknown(),
   body: Joi.object({
-	bookingId: Joi.string().required().description('Booking Id'),
-	status: Joi.string().valid(BookingStatus.COMPLETED, BookingStatus.CONFIRMED, BookingStatus.CANCELLED).description('Booking Status'),
+    bookingId: Joi.string().required().description('Booking Id'),
+    status: Joi.string()
+      .valid(
+        BookingStatus.COMPLETED,
+        BookingStatus.CONFIRMED,
+        BookingStatus.CANCELLED,
+      )
+      .description('Booking Status'),
   }).unknown(),
 };
 
@@ -78,5 +91,5 @@ module.exports = {
   registerDriver,
   registerCab,
   getBookings,
-  updateBookingStatus
+  updateBookingStatus,
 };

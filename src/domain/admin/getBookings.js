@@ -1,6 +1,5 @@
 const { Booking } = require('../../infra/database/models');
 const PaginationHandler = require('../../infra/utils/paginationHandler');
-const mongoose = require('mongoose');
 
 /**
  * Function for getting nearBy Cabs.
@@ -10,7 +9,7 @@ const mongoose = require('mongoose');
  * @param {*} pageSize
  */
 
-async function getBookings({status, pageNo, pageSize }) {
+async function getBookings({ status, pageNo, pageSize }) {
   // Convert string to Number
   pageNo = parseInt(pageNo);
   pageSize = parseInt(pageSize);
@@ -20,11 +19,11 @@ async function getBookings({status, pageNo, pageSize }) {
     pageNo,
   });
   const query = [
-	{
-		$match: {
-			status: status
-		}
-	},
+    {
+      $match: {
+        status: status,
+      },
+    },
     {
       $lookup: {
         from: 'cabs',
@@ -60,8 +59,8 @@ async function getBookings({status, pageNo, pageSize }) {
       $project: {
         __v: 0,
         updatedAt: 0,
-		startLocation: 0,
-		endLocation: 0
+        startLocation: 0,
+        endLocation: 0,
       },
     },
   ];

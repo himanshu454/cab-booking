@@ -1,6 +1,5 @@
 const { Driver } = require('../../infra/database/models');
 const ErrorHandler = require('../../infra/utils/errorHandler');
-const Encryption = require('../../infra/utils/encryption');
 const {
   RESPONSE_MESSAGES,
   ERROR_TYPES,

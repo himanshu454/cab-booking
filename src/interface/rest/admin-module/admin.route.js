@@ -10,7 +10,13 @@ const router = express.Router();
 const { validate, ValidationError } = require('express-validation');
 
 /****************Import Files****************/
-const { login, registerDriver, registerCab, getBookings, updateBookingStatus } = require('./admin.validation');
+const {
+  login,
+  registerDriver,
+  registerCab,
+  getBookings,
+  updateBookingStatus,
+} = require('./admin.validation');
 //const Auth = require('../../../infra/utils/auth');
 const AsyncHandler = require('../../../infra/utils/asyncHandler');
 const ResponseHandler = require('../../../infra/utils/responseHandler');
@@ -233,9 +239,9 @@ router.route('/bookings').get(
     // send only the data that is required by the controller
     try {
       const bookings = await Admin.getBookings({
-		  status: req.query.status,
-		  pageNo: req.query.pageNo,
-		  pageSize: req.query.pageSize
+        status: req.query.status,
+        pageNo: req.query.pageNo,
+        pageSize: req.query.pageSize,
       });
       const response = {};
       response.success = true;
@@ -282,8 +288,8 @@ router.route('/bookingStatus').put(
     // send only the data that is required by the controller
     try {
       const booking = await Admin.bookingStatus({
-		  status: req.body.status,
-		  bookingId: req.body.bookingId
+        status: req.body.status,
+        bookingId: req.body.bookingId,
       });
       const response = {};
       response.success = true;
