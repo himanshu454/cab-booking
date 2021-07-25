@@ -9,7 +9,6 @@ const express = require('express');
 const logger = require('morgan');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const helmet = require('helmet');
 
 const REST = require('./interface/rest');
 
@@ -30,7 +29,6 @@ app.use(
 // Use default logger for now
 app.use(logger('combined'));
 app.use(cors());
-app.use(helmet());
 
 // This is to check if the service is online or not
 app.use('/ping', function (req, res) {

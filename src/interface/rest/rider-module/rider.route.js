@@ -18,7 +18,7 @@ const { Rider } = require('../../../domain');
 
 /**
  * @api {post} /rider/register RiderRegister [Post]
- * @apiGroup RIDER/USER
+ * @apiGroup RIDER
  * @apiDescription This api is used for rider/user Registration.
  * @apiParam {String} email  email of the rider.
  * @apiParam {String} password Password.
@@ -81,7 +81,7 @@ router.route('/register').post(
 
 /**
  * @api {post} /rider/login RiderLogin [Post]
- * @apiGroup RIDER/USER
+ * @apiGroup RIDER
  * @apiDescription This api is used for rider/user login.
  * @apiParam {String} email  email of the rider.
  * @apiParam {String} password Password.

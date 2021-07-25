@@ -141,7 +141,7 @@ router.route('/register/driver').post(
 );
 
 /**
- * @api {post} /admin/register/driver RegisterCab [Post]
+ * @api {post} /admin/register/cab RegisterCab [Post]
  * @apiGroup ADMIN
  * @apiDescription This api is used to register a cab.
  * @apiHeader {String} authorization Bearer Token

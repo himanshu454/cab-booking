@@ -24,6 +24,7 @@ const { Booking } = require('../../../domain');
  * @api {get} /rider/nearByCabs GetNearBy Cabs [Get]
  * @apiGroup BOOKING
  * @apiDescription This api is used for getting nearBy cabs.
+ * @apiHeader {String} authorization Bearer Token
  * @apiParam {Number} longitude  Longitude if location.
  * @apiParam {Number} latitude Latitude of location.
  * @apiParam {Number} pageNo pageNo
@@ -75,10 +76,10 @@ router.route('/nearByCabs').get(
  * @api {post} /rider/requestBooking Request Booking [Post]
  * @apiGroup BOOKING
  * @apiDescription This api is used for request a booking.
- * @apiParam {String} riderId  Longitude if location.
- * @apiParam {String} cabId Latitude of location.
- * @apiParam {Object} startLocation StartLocation address and location
- * @apiParam {Object} endLocation EndLocation address and location
+ * @apiHeader {String} authorization Bearer Token
+ * @apiParam {String} cabId Cab Id
+ * @apiParam {Object} startLocation StartLocation address and location(longitude and latitude)
+ * @apiParam {Object} endLocation EndLocation address and location(longitude and latitude)
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
  *     {
@@ -129,7 +130,7 @@ router.route('/requestBooking').post(
  * @api {get} /rider/bookings Get Past Bookings [Get]
  * @apiGroup BOOKING
  * @apiDescription This api is used for getting past bookings.
- * @apiParam {String} riderId  Longitude if location.
+ * @apiHeader {String} authorization Bearer Token
  * @apiParam {Number} pageNo pageNo
  * @apiParam {Number} pageSize pageSize
  * @apiSuccessExample Success-Response:
@@ -157,6 +158,7 @@ router.route('/bookings').get(
   validate(getBookings),
   AsyncHandler(Auth.userAuth),
   AsyncHandler(async (req, res) => {
+	  console.log(req.query)
     // send only the data that is required by the controller
     try {
       let riderId = req.authUser._id;

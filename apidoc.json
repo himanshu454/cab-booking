@@ -4,6 +4,7 @@
 	"description": "Documentation for the REST apis of Cab Booking",
 	"title": "Cab Booking",
 	"url": "http://localhost:3001/v1",
+	"sampleUrl": "http://localhost:3001/v1",
 	"header": {
 		"title": "Setup",
 		"filename": "./doc-templates/header.md"

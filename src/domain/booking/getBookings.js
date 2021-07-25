@@ -11,6 +11,7 @@ const mongoose = require('mongoose');
  */
 
 async function getBookings(riderId, { pageNo, pageSize }) {
+	console.log("Rider", riderId)
   // Convert string to Number
   pageNo = parseInt(pageNo);
   pageSize = parseInt(pageSize);

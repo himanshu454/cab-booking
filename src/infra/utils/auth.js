@@ -1,4 +1,10 @@
 const Encryption = require('./encryption');
+const ResponseHandler = require('./responseHandler');
+const {
+  RESPONSE_MESSAGES,
+  ERROR_TYPES,
+  HTTP_STATUS_CODES,
+} = require('../../../constants');
 
 const getToken = function (req) {
   if (
@@ -21,14 +27,33 @@ const getToken = function (req) {
   return null;
 };
 
+// Admin auth verify Function
+async function adminAuth(req, res, next) {
+  const token = getToken(req);
+  req.isAuthenticated = false;
+  if (!token) {
+	  const response = {};
+	  response.success = false;
+	  response.statusCode = HTTP_STATUS_CODES.CODES.UNAUTHORIZED;
+	  response.message = RESPONSE_MESSAGES.MESSAGES.UNAUTHORIZED;
+	  return ResponseHandler(res, response);
+  }
+  const decodedToken = await Encryption.verifyToken(token);
+  req.admin = decodedToken;
+  req.isAuthenticated = true;
+  return next();
+}
+
+// User auth verify function
 async function userAuth(req, res, next) {
   const token = getToken(req);
   req.isAuthenticated = false;
   if (!token) {
-    return res.status(401).json({
-      success: false,
-      message: 'Unauthorised access',
-    });
+      const response = {};
+	  response.success = false;
+	  response.statusCode = HTTP_STATUS_CODES.CODES.UNAUTHORIZED;
+	  response.message = RESPONSE_MESSAGES.MESSAGES.UNAUTHORIZED;
+	  return ResponseHandler(res, response);
   }
   const decodedToken = await Encryption.verifyToken(token);
   req.authUser = decodedToken;
@@ -38,4 +63,5 @@ async function userAuth(req, res, next) {
 
 module.exports = {
   userAuth,
+  adminAuth
 };
